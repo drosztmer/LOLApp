@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.codecool.lolapp.MainActivity
 import com.codecool.lolapp.R
 import com.codecool.lolapp.util.DELAY_SPLASH
 import kotlinx.android.synthetic.main.activity_splash_screen.*
