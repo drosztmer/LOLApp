@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.codecool.lolapp.R
+import com.codecool.lolapp.model.Details
 import com.codecool.lolapp.viewmodels.DetailsViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,11 +18,15 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModel()
 
     private lateinit var characterId: String
+    private lateinit var details: Details
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val rootView = inflater.inflate(R.layout.fragment_details, container, false)
         characterId = arguments?.getString("id").toString()
-        println(characterId)
         return rootView
     }
 
@@ -37,8 +43,8 @@ class DetailsFragment : Fragment() {
     fun observeViewModel() {
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->
             response.let {
-                val details = response.details[characterId]
-                println(details?.info?.attack)
+                details = response.details[characterId] ?: error("Error")
+                showDetails(details)
             }
         })
 
@@ -58,6 +64,12 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun showDetails(details: Details) {
+        details_name_text.text = details.name
+        details_tags_text.text = details.tags.joinToString(separator = ", ")
+        details_title_text.text = details.title
     }
 
 }

@@ -42,26 +42,26 @@ data class Details(
 
 data class DetailsInfo(
     @SerializedName("attack")
-    val attack: Int,
+    val attack: Double,
     @SerializedName("defense")
-    val defense: Int,
+    val defense: Double,
     @SerializedName("magic")
-    val magic: Int,
+    val magic: Double,
     @SerializedName("difficulty")
-    val difficulty: Int
+    val difficulty: Double
 ) : Serializable
 
 data class DetailsStats(
     @SerializedName("hp")
-    val hp: Int,
+    val hp: Double,
     @SerializedName("mp")
-    val mp: Int,
+    val mp: Double,
     @SerializedName("movespeed")
-    val moveSpeed: Int,
+    val moveSpeed: Double,
     @SerializedName("attackrange")
-    val attackRange: Int,
+    val attackRange: Double,
     @SerializedName("attackdamage")
-    val attackDamage: Int
+    val attackDamage: Double
 ) : Serializable
 
 data class ResponseDetails(

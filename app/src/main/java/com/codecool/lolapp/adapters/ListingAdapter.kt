@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
@@ -16,8 +13,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.codecool.lolapp.R
 import com.codecool.lolapp.fragments.DetailsFragment
 import com.codecool.lolapp.model.Character
-import com.codecool.lolapp.util.BASE_URL_IMAGE
-import com.codecool.lolapp.util.BASE_URL_TYPE
+import com.codecool.lolapp.util.BASE_URL_LIST_IMAGE
+import com.codecool.lolapp.util.BASE_URL_LIST_TYPE
+import com.codecool.lolapp.util.ID
+import com.codecool.lolapp.util.Util
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
@@ -39,17 +38,7 @@ class ListingAdapter(var characters: ArrayList<Character>) :
 
         fun bind(character: Character) {
             if (image != null) {
-                val url = BASE_URL_IMAGE + character.name + BASE_URL_TYPE
-
-                val options: RequestOptions = RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .error(R.mipmap.ic_launcher_round)
-
-                Glide.with(view)
-                    .load(url)
-                    .apply(options)
-                    .into(image)
+                Util.loadListImage(character.name, view, image)
             }
             name.text = character.name
             title.text = character.title
@@ -57,7 +46,7 @@ class ListingAdapter(var characters: ArrayList<Character>) :
             detailsButton.setOnClickListener {
                     Toast.makeText(view.context, "HAHAHA", Toast.LENGTH_LONG).show()
                     val bundle = Bundle()
-                    bundle.putString("id", character.id)
+                    bundle.putString(ID, character.id)
                     val detailsFragment = DetailsFragment()
                     detailsFragment.arguments = bundle
                     val activity = itemView.context as AppCompatActivity

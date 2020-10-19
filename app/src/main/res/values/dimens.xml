@@ -5,4 +5,8 @@
     <dimen name="card_corner">8dp</dimen>
     <dimen name="padding">8dp</dimen>
     <dimen name="details_button_width">100dp</dimen>
+    <dimen name="details_image_height">300dp</dimen>
+    <dimen name="details_margintop">16dp</dimen>
+    <dimen name="details_card_corner_radius">24dp</dimen>
+    <dimen name="details_padding_bottom">24dp</dimen>
 </resources>
