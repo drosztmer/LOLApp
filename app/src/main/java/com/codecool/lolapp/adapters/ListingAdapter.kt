@@ -32,7 +32,7 @@ class ListingAdapter(var characters: ArrayList<Character>) :
         private val name = view.findViewById<TextView>(R.id.character_name)
         private val title = view.findViewById<TextView>(R.id.character_title)
         private val blurb = view.findViewById<TextView>(R.id.character_blurb)
-        private val detailsButton = view.findViewById<ImageButton>(R.id.buttonDetails)
+        private val detailsButton = view.findViewById<ImageButton>(R.id.button_details)
 
         fun bind(character: Character) {
             if (image != null) {
@@ -59,7 +59,7 @@ class ListingAdapter(var characters: ArrayList<Character>) :
                     detailsFragment.arguments = bundle
                     val activity = v?.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, detailsFragment).addToBackStack(null).commit()
+                        .replace(R.id.fragment_container, detailsFragment).addToBackStack(null).commit()
                 }
             }
 

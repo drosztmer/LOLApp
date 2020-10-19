@@ -15,12 +15,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var listingFragment: ListingFragment? = null
+    private lateinit var listingFragment: ListingFragment
     private var detailsFragment: DetailsFragment? = null
     private var loreFragment: LoreFragment? = null
-
-    private lateinit var fragmentManager: FragmentManager
-    private lateinit var fragmentTransaction: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListingFragment() {
         listingFragment = ListingFragment()
-        fragmentManager = supportFragmentManager
-        fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainer, listingFragment!!).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, listingFragment).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

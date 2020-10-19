@@ -6,7 +6,7 @@
     android:layout_gravity="center_vertical"
     android:layout_marginHorizontal="@dimen/margin"
     android:layout_marginTop="@dimen/margin"
-    app:cardBackgroundColor="@color/color_transparent"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/card_corner">
 
     <LinearLayout
@@ -50,9 +50,11 @@
         </LinearLayout>
 
         <ImageButton
-            android:layout_width="100dp"
+            android:background="@color/white"
+            android:layout_width="@dimen/details_button_width"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonDetails"
+            android:padding="@dimen/padding"
+            android:id="@+id/button_details"
             android:src="@drawable/details_button"
             android:scaleType="fitCenter"/>
 

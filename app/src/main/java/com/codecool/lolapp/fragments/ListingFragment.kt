@@ -32,7 +32,7 @@ class ListingFragment : Fragment() {
 
         viewModel.refresh()
 
-        listingRV.apply {
+        listing_rv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listingAdapter
         }
@@ -48,7 +48,7 @@ class ListingFragment : Fragment() {
                     myList.add(v)
                     v.name = k
                 }
-                listingRV.visibility = View.VISIBLE
+                listing_rv.visibility = View.VISIBLE
                 println(myList)
                 listingAdapter.updateCharacters(myList)
             }
@@ -65,7 +65,7 @@ class ListingFragment : Fragment() {
                 if (it) {
                     loading_view.visibility = View.VISIBLE
                     list_error.visibility = View.GONE
-                    listingRV.visibility = View.GONE
+                    listing_rv.visibility = View.GONE
                 } else {
                     loading_view.visibility = View.GONE
                 }
