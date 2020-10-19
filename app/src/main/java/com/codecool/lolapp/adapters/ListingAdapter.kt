@@ -38,7 +38,7 @@ class ListingAdapter(var characters: ArrayList<Character>) :
 
         fun bind(character: Character) {
             if (image != null) {
-                Util.loadListImage(character.name, view, image)
+                Util.loadListImage(character.id, view, image)
             }
             name.text = character.name
             title.text = character.title
