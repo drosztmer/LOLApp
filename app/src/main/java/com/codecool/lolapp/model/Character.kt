@@ -14,7 +14,7 @@ data class Character(
     val blurb: String?
 ) : Serializable
 
-data class Response(
+data class ResponseCharacter(
     @SerializedName("type")
     val type: String,
     @SerializedName("format")

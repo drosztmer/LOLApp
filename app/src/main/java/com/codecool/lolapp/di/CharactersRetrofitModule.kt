@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-val retrofitModule = module {
+val charactersRetrofitModule = module {
     single { okHttp() }
 
     single { retrofit(BASE_URL_CHARACTER) }

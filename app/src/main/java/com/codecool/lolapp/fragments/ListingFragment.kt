@@ -28,7 +28,7 @@ class ListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = "Listing"
+        activity?.title = getString(R.string.listing_title)
 
         viewModel.refresh()
 
@@ -44,9 +44,9 @@ class ListingFragment : Fragment() {
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->
             response.let {
                 val myList = arrayListOf<Character>()
-                for ((k, v) in response.characterList) {
-                    myList.add(v)
-                    v.name = k
+                for ((key, value) in response.characterList) {
+                    myList.add(value)
+                    value.name = key
                 }
                 listing_rv.visibility = View.VISIBLE
                 println(myList)

@@ -2,38 +2,33 @@ package com.codecool.lolapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.codecool.lolapp.model.Character
 import com.codecool.lolapp.model.CharactersApi
 import com.codecool.lolapp.model.ResponseCharacter
+import com.codecool.lolapp.model.ResponseDetails
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
+class DetailsViewModel(private var charactersApi: CharactersApi) : ViewModel() {
 
     private var disposable = CompositeDisposable()
-    val characters = MutableLiveData<List<Character>>()
-    val response = MutableLiveData<ResponseCharacter>()
+    val response = MutableLiveData<ResponseDetails>()
     val characterLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    init {
-        getCharacters()
+    fun refresh(name: String) {
+        getDetails(name)
     }
 
-    fun refresh() {
-        getCharacters()
-    }
-
-    fun getCharacters() {
+    fun getDetails(name: String) {
         loading.value = true
         disposable.add(
-            charactersApi.getCharacters()
+            charactersApi.getDetails(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<ResponseCharacter>() {
-                    override fun onSuccess(value: ResponseCharacter) {
+                .subscribeWith(object : DisposableSingleObserver<ResponseDetails>(){
+                    override fun onSuccess(value: ResponseDetails) {
                         response.value = value
                         characterLoadError.value = false
                         loading.value = false
@@ -53,5 +48,4 @@ class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
         super.onCleared()
         disposable.clear()
     }
-
 }
