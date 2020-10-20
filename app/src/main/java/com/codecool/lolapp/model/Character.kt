@@ -11,7 +11,7 @@ data class Character(
     @SerializedName("title")
     val title: String?,
     @SerializedName("blurb")
-    val blurb: String?
+    val blurb: String?,
 ) : Serializable
 
 data class ResponseCharacter(

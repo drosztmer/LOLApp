@@ -5,12 +5,13 @@ import androidx.lifecycle.ViewModel
 import com.codecool.lolapp.model.CharactersApi
 import com.codecool.lolapp.model.ResponseCharacter
 import com.codecool.lolapp.model.ResponseDetails
+import com.codecool.lolapp.model.data.FavouriteDao
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class DetailsViewModel(private var charactersApi: CharactersApi) : ViewModel() {
+class DetailsViewModel(private var charactersApi: CharactersApi, private val dataSource: FavouriteDao) : ViewModel() {
 
     private var disposable = CompositeDisposable()
     val response = MutableLiveData<ResponseDetails>()
