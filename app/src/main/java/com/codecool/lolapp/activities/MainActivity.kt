@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.codecool.lolapp.R
 import com.codecool.lolapp.fragments.DetailsFragment
+import com.codecool.lolapp.fragments.FavouritesFragment
 import com.codecool.lolapp.fragments.ListingFragment
 import com.codecool.lolapp.fragments.LoreFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,8 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listingFragment: ListingFragment
-    private var detailsFragment: DetailsFragment? = null
-    private var loreFragment: LoreFragment? = null
+    private lateinit var favouritesFragment: FavouritesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openFavorites() {
-        Toast.makeText(this, "HELLOOOOOO", Toast.LENGTH_LONG).show()
+        favouritesFragment = FavouritesFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, favouritesFragment)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 }

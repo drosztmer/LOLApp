@@ -91,10 +91,9 @@ class DetailsViewModel(private var charactersApi: CharactersApi, private val dat
 
     fun deleteFromFavourites(id: String) {
         disposable.add(
-            Completable.fromCallable{
+            Completable.fromCallable {
             dataSource.deleteFavourite(id)
         }
-
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object: DisposableCompletableObserver() {

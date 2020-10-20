@@ -49,7 +49,6 @@ class ListingFragment : Fragment() {
                     value.name = key
                 }
                 listing_rv.visibility = View.VISIBLE
-                println(myList)
                 listingAdapter.updateCharacters(myList)
             }
         })

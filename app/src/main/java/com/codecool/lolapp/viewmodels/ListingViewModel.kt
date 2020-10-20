@@ -13,7 +13,6 @@ import io.reactivex.schedulers.Schedulers
 class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
 
     private var disposable = CompositeDisposable()
-    val characters = MutableLiveData<List<Character>>()
     val response = MutableLiveData<ResponseCharacter>()
     val characterLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()

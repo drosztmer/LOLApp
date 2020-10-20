@@ -13,7 +13,19 @@ import kotlinx.android.synthetic.main.favourites_item.view.*
 class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
     RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
 
-    fun updateCharacters(newFavourites: List<Favourite>) {
+    companion object {
+        lateinit var onItemClickListener: OnItemClickListener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClicked(id: String, position: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        onItemClickListener = listener
+    }
+
+    fun updateFavourites(newFavourites: List<Favourite>) {
         favourites.clear()
         favourites.addAll(newFavourites)
         notifyDataSetChanged()
@@ -26,6 +38,7 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         private val blurb = view.character_blurb
         private val deleteButton = view.button_delete
 
+
         fun bind(favourite: Favourite) {
             if (image != null) {
                 Util.loadListImage(favourite.id, view, image)
@@ -34,7 +47,7 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
             title.text = favourite.title
             blurb.text = favourite.blurb
             deleteButton.setOnClickListener {
-                Toast.makeText(view.context, "HEJHOOOO", Toast.LENGTH_LONG).show()
+
             }
         }
 
@@ -47,6 +60,9 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
 
     override fun onBindViewHolder(holder: FavouritesViewHolder, position: Int) {
         holder.bind(favourites[position])
+        holder.itemView.button_delete.setOnClickListener {
+            onItemClickListener.onItemClicked(favourites[position].id, position)
+        }
     }
 
     override fun getItemCount() = favourites.size
