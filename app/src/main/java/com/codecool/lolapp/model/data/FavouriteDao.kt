@@ -1,4 +1,4 @@
-package com.codecool.lolapp.model.room
+package com.codecool.lolapp.model.data
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -8,13 +8,13 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 
 @Dao
-interface CharacterFavouriteDao {
+interface FavouriteDao {
 
     @Query("SELECT * FROM favourites WHERE id = :id")
-    fun getFavouriteById(id: String): Flowable<CharacterFavourite>
+    fun getFavouriteById(id: String): Flowable<Favourite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFavourite(favourite: CharacterFavourite): Completable
+    fun insertFavourite(favourite: Favourite): Completable
 
     @Query("DELETE FROM favourites WHERE id = :id")
     fun deleteFavourite(id: String)
