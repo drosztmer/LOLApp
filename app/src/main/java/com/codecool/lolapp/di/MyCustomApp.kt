@@ -10,7 +10,7 @@ class MyCustomApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyCustomApp)
-            modules(listOf(charactersRetrofitModule, listingModule, detailsModule))
+            modules(listOf(charactersRetrofitModule, listingModule, detailsModule, favouritesModule))
         }
     }
 }
