@@ -5,23 +5,25 @@ import java.io.Serializable
 
 data class Details(
     @SerializedName("id")
-    val id: String,
+    val id: String = "",
     @SerializedName("name")
-    var name: String?,
+    var name: String? = "",
     @SerializedName("title")
-    val title: String?,
+    val title: String? = "",
     @SerializedName("lore")
-    val lore: String?,
+    val lore: String? = "",
     @SerializedName("tags")
-    val tags: Array<String?>,
+    val tags: Array<String?> = arrayOf<String?>(),
     @SerializedName("allytips")
-    val allyTips: Array<String?>,
+    val allyTips: Array<String?> = arrayOf<String?>(),
     @SerializedName("enemytips")
-    val enemyTips: Array<String?>,
+    val enemyTips: Array<String?> = arrayOf<String?>(),
     @SerializedName("info")
-    val info: DetailsInfo,
+    val info: DetailsInfo = DetailsInfo(),
     @SerializedName("stats")
-    val stats: DetailsStats
+    val stats: DetailsStats = DetailsStats(),
+    @SerializedName("blurb")
+    val blurb: String? = ""
 ) : Serializable {
 
     override fun equals(other: Any?): Boolean {
@@ -42,26 +44,26 @@ data class Details(
 
 data class DetailsInfo(
     @SerializedName("attack")
-    val attack: Double,
+    val attack: Double = 0.0,
     @SerializedName("defense")
-    val defense: Double,
+    val defense: Double = 0.0,
     @SerializedName("magic")
-    val magic: Double,
+    val magic: Double = 0.0,
     @SerializedName("difficulty")
-    val difficulty: Double
+    val difficulty: Double = 0.0
 ) : Serializable
 
 data class DetailsStats(
     @SerializedName("hp")
-    val hp: Double,
+    val hp: Double = 0.0,
     @SerializedName("mp")
-    val mp: Double,
+    val mp: Double = 0.0,
     @SerializedName("movespeed")
-    val moveSpeed: Double,
+    val moveSpeed: Double = 0.0,
     @SerializedName("attackrange")
-    val attackRange: Double,
+    val attackRange: Double = 0.0,
     @SerializedName("attackdamage")
-    val attackDamage: Double
+    val attackDamage: Double = 0.0
 ) : Serializable
 
 data class ResponseDetails(

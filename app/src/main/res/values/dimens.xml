@@ -10,5 +10,5 @@
     <dimen name="details_card_corner_radius">24dp</dimen>
     <dimen name="details_padding_bottom">24dp</dimen>
     <dimen name="padding_bottom">36dp</dimen>
-    <dimen name="favourite_button_width">24dp</dimen>
+    <dimen name="favourite_button_width">50dp</dimen>
 </resources>

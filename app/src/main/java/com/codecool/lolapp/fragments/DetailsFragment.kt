@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.Details
+import com.codecool.lolapp.model.DetailsInfo
+import com.codecool.lolapp.model.DetailsStats
+import com.codecool.lolapp.model.data.Favourite
 import com.codecool.lolapp.util.Util
 import com.codecool.lolapp.viewmodels.DetailsViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.coroutines.awaitAll
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsFragment : Fragment() {
@@ -47,6 +50,17 @@ class DetailsFragment : Fragment() {
                 details = response.details[characterId] ?: error("Error")
                 showDetails(details)
             }
+            viewModel.isFavourite.observe(viewLifecycleOwner, Observer { isFavourite ->
+                isFavourite?.let {
+                    if (it) {
+                        favourite_button.setBackgroundResource(R.drawable.ic_full_star)
+                        toggleClickListener(it)
+                    } else {
+                        favourite_button.setBackgroundResource(R.drawable.ic_empty_star)
+                        toggleClickListener(it)
+                    }
+                }
+            })
         })
 
         viewModel.characterLoadError.observe(viewLifecycleOwner, Observer { isError ->
@@ -65,6 +79,8 @@ class DetailsFragment : Fragment() {
                 }
             }
         })
+
+
     }
 
     private fun showDetails(details: Details) {
@@ -72,6 +88,19 @@ class DetailsFragment : Fragment() {
         details_name_text.text = details.name
         details_tags_text.text = details.tags.joinToString(separator = ", ")
         details_title_text.text = details.title
+    }
+
+    fun toggleClickListener(isFav: Boolean) {
+        if (isFav) {
+            favourite_button.setOnClickListener {
+                viewModel.deleteFromFavourites(details.id)
+            }
+        } else {
+            val favourite = Favourite(details.id, details.name, details.title, details.blurb)
+            favourite_button.setOnClickListener {
+                viewModel.addToFavourites(favourite)
+            }
+        }
     }
 
 }
