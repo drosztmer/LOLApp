@@ -44,7 +44,6 @@ class ListingAdapter(var characters: ArrayList<Character>) :
             title.text = character.title
             blurb.text = character.blurb
             detailsButton.setOnClickListener {
-                    Toast.makeText(view.context, "HAHAHA", Toast.LENGTH_LONG).show()
                     val bundle = Bundle()
                     bundle.putString(ID, character.id)
                     val detailsFragment = DetailsFragment()
