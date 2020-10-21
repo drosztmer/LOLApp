@@ -6,4 +6,5 @@
     <color name="white">#ffffff</color>
     <color name="mainBackground">#7c92eb</color>
     <color name="color_transparent">#50FFFFFF</color>
+    <color name="button_color">#22bd4e</color>
 </resources>

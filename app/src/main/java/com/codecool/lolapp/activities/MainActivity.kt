@@ -3,15 +3,11 @@ package com.codecool.lolapp.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.codecool.lolapp.R
-import com.codecool.lolapp.fragments.DetailsFragment
 import com.codecool.lolapp.fragments.FavouritesFragment
 import com.codecool.lolapp.fragments.ListingFragment
-import com.codecool.lolapp.fragments.LoreFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.favorite) {
+        if (id == R.id.favourite) {
             openFavorites()
             return true;
         }

@@ -13,4 +13,10 @@
     <string name="delete_failure_text">Error, item was not deleted!</string>
     <string name="no_favourites">No favourites</string>
     <string name="favourites_add">Item added to favourites!</string>
+    <string name="details_hp">HP</string>
+    <string name="details_mp">MP</string>
+    <string name="details_move_speed">Move Speed</string>
+    <string name="details_attack_range">Attack Range</string>
+    <string name="details_attack_damage">Attack Damage</string>
+    <string name="lore_button_text">Lore</string>
 </resources>
