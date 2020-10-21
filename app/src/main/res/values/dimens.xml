@@ -4,4 +4,19 @@
     <dimen name="margin">8dp</dimen>
     <dimen name="card_corner">8dp</dimen>
     <dimen name="padding">8dp</dimen>
+    <dimen name="details_button_width">100dp</dimen>
+    <dimen name="details_image_height">300dp</dimen>
+    <dimen name="details_margintop">16dp</dimen>
+    <dimen name="details_card_corner_radius">24dp</dimen>
+    <dimen name="details_padding_bottom">24dp</dimen>
+    <dimen name="padding_bottom">36dp</dimen>
+    <dimen name="favourite_button_width">50dp</dimen>
+    <dimen name="guideline_left">70dp</dimen>
+    <dimen name="guideline_right">70dp</dimen>
+    <dimen name="lore_button_width">80dp</dimen>
+    <dimen name="lore_button_height">40dp</dimen>
+    <dimen name="lore_button_text_size">20sp</dimen>
+    <dimen name="horizontal_guideline">65dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
+    <dimen name="vertical_guideline">125dp</dimen>
 </resources>

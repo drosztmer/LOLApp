@@ -11,10 +11,11 @@ data class Character(
     @SerializedName("title")
     val title: String?,
     @SerializedName("blurb")
-    val blurb: String?
+    val blurb: String?,
+    var expanded: Boolean = false
 ) : Serializable
 
-data class Response(
+data class ResponseCharacter(
     @SerializedName("type")
     val type: String,
     @SerializedName("format")
