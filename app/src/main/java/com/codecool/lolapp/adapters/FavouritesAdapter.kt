@@ -22,6 +22,10 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         fun onItemClicked(id: String, position: Int)
     }
 
+    fun getListSize(): Int {
+        return favourites.size
+    }
+
     fun setOnItemClickListener(listener: OnItemClickListener) {
         onItemClickListener = listener
     }
@@ -33,8 +37,8 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
     }
 
     fun removeFavourite(position: Int) {
-        favourites.removeAt(position)
         notifyItemRemoved(position)
+        favourites.removeAt(position)
     }
 
     class FavouritesViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {

@@ -33,7 +33,6 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
         favouritesAdapter.setOnItemClickListener(this)
         viewModel.refresh()
 
-
         favourites_rv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = favouritesAdapter
@@ -48,6 +47,7 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
             favourites?.let {
                 favourites_rv.visibility = View.VISIBLE
                 favouritesAdapter.updateFavourites(it)
+                checkEmptyList()
             }
         })
 
@@ -83,6 +83,15 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
     override fun onItemClicked(id: String, position: Int) {
         viewModel.deleteFromFavourites(id)
         favouritesAdapter.removeFavourite(position)
+        checkEmptyList()
+    }
+
+    private fun checkEmptyList() {
+        if (favouritesAdapter.getListSize() == 0) {
+            list_empty.visibility = View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
 }
