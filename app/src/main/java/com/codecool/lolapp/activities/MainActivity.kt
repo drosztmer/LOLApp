@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openFavorites() {
+
         favouritesFragment = FavouritesFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, favouritesFragment)

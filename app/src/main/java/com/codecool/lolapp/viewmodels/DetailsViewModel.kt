@@ -54,6 +54,7 @@ class DetailsViewModel(private var charactersApi: CharactersApi, private val dat
 
     fun getFavourite(id: String) {
         isFavourite.value = false
+        loading.value = true
         disposable.add(
             dataSource.getFavouriteById(id)
                 .subscribeOn(Schedulers.io())
@@ -61,10 +62,12 @@ class DetailsViewModel(private var charactersApi: CharactersApi, private val dat
                 .subscribeWith(object: DisposableSingleObserver<Favourite>() {
                     override fun onSuccess(value: Favourite) {
                         isFavourite.value = true
+                        loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         println(e.message)
+                        loading.value = false
                     }
 
                 })

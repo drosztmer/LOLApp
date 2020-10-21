@@ -4,17 +4,26 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.codecool.lolapp.R
 
 class Util {
+
     companion object {
+
         fun loadListImage(name: String?, view: View, image: ImageView) {
             val url = BASE_URL_LIST_IMAGE + name + BASE_URL_LIST_TYPE
+
+            val circularProgressDrawable = CircularProgressDrawable(view.context)
+            circularProgressDrawable.strokeWidth = 5f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+
             val options: RequestOptions = RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.character_placeholder)
+                .placeholder(circularProgressDrawable)
                 .error(R.mipmap.ic_launcher_round)
             Glide.with(view)
                 .load(url)
@@ -24,8 +33,14 @@ class Util {
 
         fun loadDetailsImage(name: String?, activity: Activity, image: ImageView) {
             val url = BASE_URL_DETAILS_IMAGE + name + BASE_URL_DETAILS_TYPE
+
+            val circularProgressDrawable = CircularProgressDrawable(activity)
+            circularProgressDrawable.strokeWidth = 5f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+
             val options: RequestOptions = RequestOptions()
-                .placeholder(R.drawable.character_placeholder)
+                .placeholder(circularProgressDrawable)
                 .error(R.mipmap.ic_launcher_round)
             Glide.with(activity)
                 .load(url)

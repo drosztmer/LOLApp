@@ -70,12 +70,12 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
         })
         viewModel.deleteSuccess.observe(viewLifecycleOwner, Observer { isDeleteSuccess ->
             isDeleteSuccess?.let {
-                if (it) Toast.makeText(context, getString(R.string.delete_success_text), Toast.LENGTH_LONG).show()
+                if (it) Toast.makeText(context, getString(R.string.delete_success_text), Toast.LENGTH_SHORT).show()
             }
         })
         viewModel.deleteFailure.observe(viewLifecycleOwner, Observer { isDeleteFailure ->
             isDeleteFailure?.let {
-                if (it) Toast.makeText(context, getString(R.string.delete_failure_text), Toast.LENGTH_LONG).show()
+                if (it) Toast.makeText(context, getString(R.string.delete_failure_text), Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.codecool.lolapp.R
@@ -58,6 +59,7 @@ class DetailsFragment : Fragment() {
                     } else {
                         favourite_button.setBackgroundResource(R.drawable.ic_empty_star)
                         toggleClickListener(it)
+
                     }
                 }
             })
@@ -94,11 +96,13 @@ class DetailsFragment : Fragment() {
         if (isFav) {
             favourite_button.setOnClickListener {
                 viewModel.deleteFromFavourites(details.id)
+                Toast.makeText(context, getString(R.string.delete_success_text), Toast.LENGTH_SHORT).show()
             }
         } else {
             val favourite = Favourite(details.id, details.name, details.title, details.blurb)
             favourite_button.setOnClickListener {
                 viewModel.addToFavourites(favourite)
+                Toast.makeText(context, getString(R.string.favourites_add), Toast.LENGTH_SHORT).show()
             }
         }
     }

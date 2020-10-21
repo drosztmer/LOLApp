@@ -12,4 +12,5 @@
     <string name="delete_success_text">Item removed from favourites!</string>
     <string name="delete_failure_text">Error, item was not deleted!</string>
     <string name="no_favourites">No favourites</string>
+    <string name="favourites_add">Item added to favourites!</string>
 </resources>
