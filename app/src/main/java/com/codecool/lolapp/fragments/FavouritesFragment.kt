@@ -82,7 +82,7 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
 
     override fun onItemClicked(id: String, position: Int) {
         viewModel.deleteFromFavourites(id)
-        favouritesAdapter.notifyItemRemoved(position)
+        favouritesAdapter.removeFavourite(position)
     }
 
 }

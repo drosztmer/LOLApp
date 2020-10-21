@@ -62,7 +62,6 @@ class FavouritesViewModel(private val dataSource: FavouriteDao) :ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object: DisposableCompletableObserver() {
                     override fun onComplete() {
-                        getFavourites()
                         deleteSuccess.value = true
                     }
 

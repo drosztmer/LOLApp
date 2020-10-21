@@ -32,6 +32,11 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         notifyDataSetChanged()
     }
 
+    fun removeFavourite(position: Int) {
+        favourites.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     class FavouritesViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val image = view.character_image
         private val name = view.character_name
