@@ -9,6 +9,7 @@ import com.codecool.lolapp.R
 import com.codecool.lolapp.model.data.Favourite
 import com.codecool.lolapp.util.Util
 import kotlinx.android.synthetic.main.favourites_item.view.*
+import kotlinx.android.synthetic.main.fragment_favourites.*
 
 class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
     RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder>() {
@@ -62,6 +63,7 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         holder.bind(favourites[position])
         holder.itemView.button_delete.setOnClickListener {
             onItemClickListener.onItemClicked(favourites[position].id, position)
+            notifyDataSetChanged()
         }
     }
 

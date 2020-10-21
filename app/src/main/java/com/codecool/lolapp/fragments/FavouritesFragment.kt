@@ -30,9 +30,9 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.favourites_title)
 
+        favouritesAdapter.setOnItemClickListener(this)
         viewModel.refresh()
 
-        favouritesAdapter.setOnItemClickListener(this)
 
         favourites_rv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -82,7 +82,6 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
 
     override fun onItemClicked(id: String, position: Int) {
         viewModel.deleteFromFavourites(id)
-        viewModel.refresh()
         favouritesAdapter.notifyItemRemoved(position)
     }
 
