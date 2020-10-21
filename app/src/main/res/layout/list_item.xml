@@ -34,7 +34,6 @@
                 style="@style/Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding"
                 android:text="NAME"
                 app:layout_constraintBottom_toTopOf="@+id/character_title"
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical" />
@@ -44,7 +43,6 @@
                 style="@style/Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding"
                 android:text="TITLE"
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
                 app:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
