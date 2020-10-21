@@ -45,7 +45,6 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         private val image = view.character_image
         private val name = view.character_name
         private val title = view.character_title
-        private val blurb = view.character_blurb
         private val deleteButton = view.button_delete
 
 
@@ -55,7 +54,6 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
             }
             name.text = favourite.name
             title.text = favourite.title
-            blurb.text = favourite.blurb
             deleteButton.setOnClickListener {
 
             }

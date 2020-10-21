@@ -12,6 +12,7 @@ data class Character(
     val title: String?,
     @SerializedName("blurb")
     val blurb: String?,
+    var expanded: Boolean = false
 ) : Serializable
 
 data class ResponseCharacter(

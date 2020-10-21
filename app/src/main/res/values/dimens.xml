@@ -16,4 +16,6 @@
     <dimen name="lore_button_width">80dp</dimen>
     <dimen name="lore_button_height">40dp</dimen>
     <dimen name="lore_button_text_size">20sp</dimen>
+    <dimen name="vertcal_guideline">100dp</dimen>
+    <dimen name="horizontal_guideline">65dp</dimen>
 </resources>

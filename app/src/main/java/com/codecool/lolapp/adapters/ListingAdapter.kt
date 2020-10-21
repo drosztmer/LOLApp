@@ -69,7 +69,15 @@ class ListingAdapter(var characters: ArrayList<Character>) :
         )
 
     override fun onBindViewHolder(holder: ListingAdapter.ListingViewHolder, position: Int) {
-        holder.bind(characters[position])
+        val character = characters[position]
+        holder.bind(character)
+        val isExpendable: Boolean = characters[position].expanded
+        holder.itemView.expandable_layout.visibility = if (isExpendable) View.VISIBLE else View.GONE
+        holder.itemView.setOnClickListener {
+            val character_current = characters[position]
+            character_current.expanded = !character_current.expanded
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount() = characters.size

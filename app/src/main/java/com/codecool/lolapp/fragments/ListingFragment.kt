@@ -35,6 +35,7 @@ class ListingFragment : Fragment() {
         listing_rv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listingAdapter
+            setHasFixedSize(true)
         }
 
         observeViewModel()
