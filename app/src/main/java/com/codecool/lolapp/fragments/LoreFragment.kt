@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.Details
 import com.codecool.lolapp.util.DETAILS
+import kotlinx.android.synthetic.main.fragment_lore.*
 
 class LoreFragment : Fragment() {
 
@@ -25,6 +26,13 @@ class LoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.lore_title)
         println(details.lore)
+        showInfo()
+    }
+
+    private fun showInfo() {
+        lore_text.text = details.lore
+        ally_tips_text.text = details.allyTips.joinToString(separator = "\n")
+        enemy_tips_text.text = details.enemyTips.joinToString(separator = "\n")
     }
 
 }
