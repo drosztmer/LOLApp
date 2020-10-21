@@ -5,17 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.Details
-import com.codecool.lolapp.model.DetailsInfo
-import com.codecool.lolapp.model.DetailsStats
 import com.codecool.lolapp.model.data.Favourite
+import com.codecool.lolapp.util.DETAILS
+import com.codecool.lolapp.util.ID
 import com.codecool.lolapp.util.Util
 import com.codecool.lolapp.viewmodels.DetailsViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
-import kotlinx.coroutines.awaitAll
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsFragment : Fragment() {
@@ -30,9 +31,8 @@ class DetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_details, container, false)
-        characterId = arguments?.getString("id").toString()
-        return rootView
+        characterId = arguments?.getString(ID).toString()
+        return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,9 +43,13 @@ class DetailsFragment : Fragment() {
 
         observeViewModel()
 
+        lore_button.setOnClickListener {
+            loreClick()
+        }
+
     }
 
-    fun observeViewModel() {
+    private fun observeViewModel() {
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->
             response.let {
                 details = response.details[characterId] ?: error("Error")
@@ -102,7 +106,7 @@ class DetailsFragment : Fragment() {
 
     }
 
-    fun toggleClickListener(isFav: Boolean) {
+    private fun toggleClickListener(isFav: Boolean) {
         if (isFav) {
             favourite_button.setOnClickListener {
                 viewModel.deleteFromFavourites(details.id)
@@ -115,6 +119,18 @@ class DetailsFragment : Fragment() {
                 Toast.makeText(context, getString(R.string.favourites_add), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun loreClick() {
+        val bundle = Bundle()
+        bundle.putSerializable(DETAILS, details)
+        val loreFragment = LoreFragment()
+        loreFragment.arguments = bundle
+        (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, loreFragment)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 
 }

@@ -23,4 +23,8 @@
     <string name="details_defense">Defense</string>
     <string name="details_magic">Magic</string>
     <string name="details_difficulty">Difficulty</string>
+    <string name="lore_title">Lore</string>
+    <string name="lore_lore">Lore</string>
+    <string name="ally_tips">Ally Tips</string>
+    <string name="enemy_tips">Enemy Tips</string>
 </resources>
