@@ -1,7 +1,30 @@
 <resources>
     <string name="app_name">LOLApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="button_favorite_text">Favorites</string>
+    <string name="button_favourite_text">Favourites</string>
     <string name="error_message">An error occurred while loading data.</string>
+    <string name="listing_title">Listing</string>
+    <string name="details_title">Details</string>
+    <string name="details_name">Name</string>
+    <string name="details_tags">Tags</string>
+    <string name="details_character_title">Title</string>
+    <string name="favourites_title">Favourites</string>
+    <string name="delete_success_text">Item removed from favourites!</string>
+    <string name="delete_failure_text">Error, item was not deleted!</string>
+    <string name="no_favourites">No favourites</string>
+    <string name="favourites_add">Item added to favourites!</string>
+    <string name="details_hp">HP</string>
+    <string name="details_mp">MP</string>
+    <string name="details_move_speed">Move Speed</string>
+    <string name="details_attack_range">Attack Range</string>
+    <string name="details_attack_damage">Attack Damage</string>
+    <string name="lore_button_text">Lore</string>
+    <string name="details_attack">Attack</string>
+    <string name="details_defense">Defense</string>
+    <string name="details_magic">Magic</string>
+    <string name="details_difficulty">Difficulty</string>
+    <string name="lore_title">Lore</string>
+    <string name="lore_lore">Lore</string>
+    <string name="ally_tips">Ally Tips</string>
+    <string name="enemy_tips">Enemy Tips</string>
 </resources>

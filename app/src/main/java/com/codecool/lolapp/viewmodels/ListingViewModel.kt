@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.codecool.lolapp.model.Character
 import com.codecool.lolapp.model.CharactersApi
-import com.codecool.lolapp.model.Response
+import com.codecool.lolapp.model.ResponseCharacter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -13,8 +13,7 @@ import io.reactivex.schedulers.Schedulers
 class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
 
     private var disposable = CompositeDisposable()
-    val characters = MutableLiveData<List<Character>>()
-    val response = MutableLiveData<Response>()
+    val response = MutableLiveData<ResponseCharacter>()
     val characterLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -32,8 +31,8 @@ class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
             charactersApi.getCharacters()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<Response>() {
-                    override fun onSuccess(value: Response) {
+                .subscribeWith(object: DisposableSingleObserver<ResponseCharacter>() {
+                    override fun onSuccess(value: ResponseCharacter) {
                         response.value = value
                         characterLoadError.value = false
                         loading.value = false
@@ -47,6 +46,11 @@ class ListingViewModel(private var charactersApi: CharactersApi) : ViewModel() {
 
                 })
         )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 
 }

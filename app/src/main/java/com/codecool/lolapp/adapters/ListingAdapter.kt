@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.codecool.lolapp.R
 import com.codecool.lolapp.fragments.DetailsFragment
 import com.codecool.lolapp.model.Character
-import com.codecool.lolapp.util.BASE_URL_IMAGE
-import com.codecool.lolapp.util.BASE_URL_TYPE
+import com.codecool.lolapp.util.BASE_URL_LIST_IMAGE
+import com.codecool.lolapp.util.BASE_URL_LIST_TYPE
+import com.codecool.lolapp.util.ID
+import com.codecool.lolapp.util.Util
+import kotlinx.android.synthetic.main.list_item.view.*
 
 
 class ListingAdapter(var characters: ArrayList<Character>) :
@@ -28,40 +30,30 @@ class ListingAdapter(var characters: ArrayList<Character>) :
     }
 
     class ListingViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        private val image = view.findViewById<ImageView>(R.id.character_image)
-        private val name = view.findViewById<TextView>(R.id.character_name)
-        private val title = view.findViewById<TextView>(R.id.character_title)
-        private val blurb = view.findViewById<TextView>(R.id.character_blurb)
-        private val detailsButton = view.findViewById<ImageButton>(R.id.buttonDetails)
+        private val image = view.character_image
+        private val name = view.character_name
+        private val title = view.character_title
+        private val blurb = view.character_blurb
+        private val detailsButton = view.button_details
 
         fun bind(character: Character) {
             if (image != null) {
-                val url = BASE_URL_IMAGE + character.name + BASE_URL_TYPE
-
-                val options: RequestOptions = RequestOptions()
-                    .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .error(R.mipmap.ic_launcher_round)
-
-                Glide.with(view)
-                    .load(url)
-                    .apply(options)
-                    .into(image)
+                Util.loadListImage(character.id, view, image)
             }
             name.text = character.name
             title.text = character.title
             blurb.text = character.blurb
-            detailsButton.setOnClickListener { object: View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val bundle: Bundle = Bundle()
-                    bundle.putString("id", character.id)
-                    val detailsFragment: DetailsFragment = DetailsFragment()
+            detailsButton.setOnClickListener {
+                    val bundle = Bundle()
+                    bundle.putString(ID, character.id)
+                    val detailsFragment = DetailsFragment()
                     detailsFragment.arguments = bundle
-                    val activity = v?.context as AppCompatActivity
+                    val activity = itemView.context as AppCompatActivity
                     activity.supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, detailsFragment).addToBackStack(null).commit()
-                }
-            }
+                        .replace(R.id.fragment_container, detailsFragment)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit()
 
             }
         }
@@ -77,7 +69,15 @@ class ListingAdapter(var characters: ArrayList<Character>) :
         )
 
     override fun onBindViewHolder(holder: ListingAdapter.ListingViewHolder, position: Int) {
-        holder.bind(characters[position])
+        val character = characters[position]
+        holder.bind(character)
+        val isExpendable: Boolean = characters[position].expanded
+        holder.itemView.expandable_layout.visibility = if (isExpendable) View.VISIBLE else View.GONE
+        holder.itemView.setOnClickListener {
+            val character_current = characters[position]
+            character_current.expanded = !character_current.expanded
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount() = characters.size

@@ -3,24 +3,17 @@ package com.codecool.lolapp.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.codecool.lolapp.R
-import com.codecool.lolapp.fragments.DetailsFragment
+import com.codecool.lolapp.fragments.FavouritesFragment
 import com.codecool.lolapp.fragments.ListingFragment
-import com.codecool.lolapp.fragments.LoreFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var listingFragment: ListingFragment? = null
-    private var detailsFragment: DetailsFragment? = null
-    private var loreFragment: LoreFragment? = null
-
-    private lateinit var fragmentManager: FragmentManager
-    private lateinit var fragmentTransaction: FragmentTransaction
+    private lateinit var listingFragment: ListingFragment
+    private lateinit var favouritesFragment: FavouritesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListingFragment() {
         listingFragment = ListingFragment()
-        fragmentManager = supportFragmentManager
-        fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainer, listingFragment!!).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, listingFragment).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if (id == R.id.favorite) {
+        if (id == R.id.favourite) {
             openFavorites()
             return true;
         }
@@ -53,6 +44,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openFavorites() {
-        Toast.makeText(this, "HELLOOOOOO", Toast.LENGTH_LONG).show()
+
+        favouritesFragment = FavouritesFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, favouritesFragment)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 }
