@@ -88,8 +88,18 @@ class DetailsFragment : Fragment() {
     private fun showDetails(details: Details) {
         activity?.let { Util.loadDetailsImage(details.id, it, details_image) }
         details_name_text.text = details.name
-        details_tags_text.text = details.tags.joinToString(separator = ", ")
         details_title_text.text = details.title
+        details_tags_text.text = details.tags.joinToString(separator = ", ")
+        details_attack_text.text = details.info.attack.toString()
+        details_defense_text.text = details.info.defense.toString()
+        details_magic_text.text = details.info.magic.toString()
+        details_difficulty_text.text = details.info.magic.toString()
+        details_hp_text.text = details.stats.hp.toString()
+        details_mp_text.text = details.stats.mp.toString()
+        details_move_speed_text.text = details.stats.moveSpeed.toString()
+        details_attack_range_text.text = details.stats.attackRange.toString()
+        details_attack_damage_text.text = details.stats.attackDamage.toString()
+
     }
 
     fun toggleClickListener(isFav: Boolean) {

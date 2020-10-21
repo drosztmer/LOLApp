@@ -19,4 +19,8 @@
     <string name="details_attack_range">Attack Range</string>
     <string name="details_attack_damage">Attack Damage</string>
     <string name="lore_button_text">Lore</string>
+    <string name="details_attack">Attack</string>
+    <string name="details_defense">Defense</string>
+    <string name="details_magic">Magic</string>
+    <string name="details_difficulty">Difficulty</string>
 </resources>

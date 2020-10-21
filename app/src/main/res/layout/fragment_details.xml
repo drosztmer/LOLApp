@@ -122,6 +122,82 @@
                         app:layout_constraintTop_toBottomOf="@id/details_tags" />
 
                     <TextView
+                        android:id="@+id/details_attack"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="@string/details_attack"
+                        app:layout_constraintStart_toStartOf="@id/guideline_left"
+                        app:layout_constraintTop_toBottomOf="@id/details_tags_text"/>
+
+                    <TextView
+                        android:id="@+id/details_attack_text"
+                        style="@style/TextDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                        app:layout_constraintTop_toBottomOf="@id/details_tags_text"/>
+
+                    <TextView
+                        android:id="@+id/details_defense"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="@string/details_defense"
+                        app:layout_constraintStart_toStartOf="@id/guideline_left"
+                        app:layout_constraintTop_toBottomOf="@id/details_attack"/>
+
+                    <TextView
+                        android:id="@+id/details_defense_text"
+                        style="@style/TextDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                        app:layout_constraintTop_toBottomOf="@id/details_attack"/>
+
+                    <TextView
+                        android:id="@+id/details_magic"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="@string/details_magic"
+                        app:layout_constraintStart_toStartOf="@id/guideline_left"
+                        app:layout_constraintTop_toBottomOf="@id/details_defense"/>
+
+                    <TextView
+                        android:id="@+id/details_magic_text"
+                        style="@style/TextDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                        app:layout_constraintTop_toBottomOf="@id/details_defense"/>
+
+                    <TextView
+                        android:id="@+id/details_difficulty"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        android:text="@string/details_difficulty"
+                        app:layout_constraintStart_toStartOf="@id/guideline_left"
+                        app:layout_constraintTop_toBottomOf="@id/details_magic"/>
+
+                    <TextView
+                        android:id="@+id/details_difficulty_text"
+                        style="@style/TextDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin"
+                        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                        app:layout_constraintTop_toBottomOf="@id/details_magic"/>
+
+                    <TextView
                         android:id="@+id/details_hp"
                         style="@style/Title"
                         android:layout_width="wrap_content"
@@ -129,7 +205,7 @@
                         android:layout_marginTop="@dimen/margin"
                         android:text="@string/details_hp"
                         app:layout_constraintStart_toStartOf="@id/guideline_left"
-                        app:layout_constraintTop_toBottomOf="@id/details_tags_text"/>
+                        app:layout_constraintTop_toBottomOf="@id/details_difficulty"/>
 
                     <TextView
                         android:id="@+id/details_hp_text"
@@ -137,9 +213,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin"
-                        android:text="@string/details_hp"
                         app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                        app:layout_constraintTop_toBottomOf="@id/details_tags_text"/>
+                        app:layout_constraintTop_toBottomOf="@id/details_difficulty"/>
 
                     <TextView
                         android:id="@+id/details_mp"
@@ -157,7 +232,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin"
-                        android:text="@string/details_hp"
                         app:layout_constraintEnd_toEndOf="@id/guideline_right"
                         app:layout_constraintTop_toBottomOf="@id/details_hp"/>
 
@@ -177,7 +251,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin"
-                        android:text="@string/details_hp"
                         app:layout_constraintEnd_toEndOf="@id/guideline_right"
                         app:layout_constraintTop_toBottomOf="@id/details_mp"/>
 
@@ -197,7 +270,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin"
-                        android:text="@string/details_hp"
                         app:layout_constraintEnd_toEndOf="@id/guideline_right"
                         app:layout_constraintTop_toBottomOf="@id/details_move_speed"/>
 
@@ -217,7 +289,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin"
-                        android:text="@string/details_hp"
+
                         app:layout_constraintEnd_toEndOf="@id/guideline_right"
                         app:layout_constraintTop_toBottomOf="@id/details_attack_range"/>
 
