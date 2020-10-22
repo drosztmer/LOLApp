@@ -24,7 +24,7 @@ class Util {
             val options: RequestOptions = RequestOptions()
                 .centerCrop()
                 .placeholder(circularProgressDrawable)
-                .error(R.mipmap.ic_launcher_round)
+                .error(R.drawable.character_placeholder)
             Glide.with(view)
                 .load(url)
                 .apply(options)
@@ -41,7 +41,7 @@ class Util {
 
             val options: RequestOptions = RequestOptions()
                 .placeholder(circularProgressDrawable)
-                .error(R.mipmap.ic_launcher_round)
+                .error(R.drawable.character_placeholder)
             Glide.with(activity)
                 .load(url)
                 .apply(options)
