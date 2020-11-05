@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codecool.lolapp.R
 import com.codecool.lolapp.adapters.ListingAdapter
 import com.codecool.lolapp.model.Character
@@ -28,6 +29,21 @@ class ListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (savedInstanceState != null) {
+            val characters = savedInstanceState.getSerializable("characters") as List<Character>
+            if (characters.isEmpty()) {
+                list_error.visibility = View.VISIBLE
+                loading_view.visibility = View.GONE
+            } else {
+                listingAdapter.updateCharacters(characters)
+                list_error.visibility = View.GONE
+                loading_view.visibility = View.GONE
+            }
+        } else {
+            observeViewModel()
+        }
+
         activity?.title = getString(R.string.listing_title)
 
         viewModel.refresh()
@@ -38,7 +54,18 @@ class ListingFragment : Fragment() {
             setHasFixedSize(true)
         }
 
-        observeViewModel()
+        swipe_refresh_layout.setOnRefreshListener {
+            swipe_refresh_layout.isRefreshing = false
+            listing_rv.visibility = View.GONE
+            list_error.visibility = View.GONE
+            observeViewModel()
+        }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("characters", listingAdapter.characters)
     }
 
     fun observeViewModel() {
