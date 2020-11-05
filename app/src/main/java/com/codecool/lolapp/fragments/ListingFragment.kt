@@ -58,6 +58,7 @@ class ListingFragment : Fragment() {
             swipe_refresh_layout.isRefreshing = false
             listing_rv.visibility = View.GONE
             list_error.visibility = View.GONE
+            viewModel.refresh()
             observeViewModel()
         }
 
@@ -84,6 +85,7 @@ class ListingFragment : Fragment() {
         viewModel.characterLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
                 list_error.visibility = if (it) View.VISIBLE else View.GONE
+                listing_rv.visibility = if (it) View.GONE else View.VISIBLE
             }
         })
 

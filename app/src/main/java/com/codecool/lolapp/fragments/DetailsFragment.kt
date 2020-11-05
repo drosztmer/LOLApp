@@ -24,7 +24,7 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModel()
 
     private lateinit var characterId: String
-    private lateinit var details: Details
+    private var details: Details = Details("", "", "")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +52,7 @@ class DetailsFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->
             response.let {
-                details = response.details[characterId] ?: error("Error")
+                details = response.details[characterId] ?: error(getString(R.string.error))
                 showDetails(details)
             }
             viewModel.isFavourite.observe(viewLifecycleOwner, Observer { isFavourite ->
@@ -72,6 +72,7 @@ class DetailsFragment : Fragment() {
         viewModel.characterLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
                 list_error.visibility = if (it) View.VISIBLE else View.GONE
+                details_scrollview.visibility = if (it) View.GONE else View.VISIBLE
             }
         })
 
