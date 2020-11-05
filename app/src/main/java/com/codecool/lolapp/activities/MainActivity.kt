@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listingFragment: ListingFragment
-    private lateinit var favouritesFragment: FavouritesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListingFragment() {
-        listingFragment = ListingFragment()
+        val listingFragment = ListingFragment()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, listingFragment).commit()
     }
 
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     fun openFavorites() {
 
-        favouritesFragment = FavouritesFragment()
+        val favouritesFragment = FavouritesFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, favouritesFragment)
             .addToBackStack(null)
