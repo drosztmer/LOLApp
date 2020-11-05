@@ -27,4 +27,5 @@
     <string name="lore_lore">Lore</string>
     <string name="ally_tips">Ally Tips</string>
     <string name="enemy_tips">Enemy Tips</string>
+    <string name="error">Error</string>
 </resources>
