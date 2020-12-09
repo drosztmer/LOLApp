@@ -59,8 +59,8 @@ class ListingAdapter(var characters: ArrayList<Character>) :
         val isExpendable: Boolean = characters[position].expanded
         holder.itemView.expandable_layout.visibility = if (isExpendable) View.VISIBLE else View.GONE
         holder.itemView.setOnClickListener {
-            val character_current = characters[position]
-            character_current.expanded = !character_current.expanded
+            val currentCharacter = characters[position]
+            currentCharacter.expanded = !currentCharacter.expanded
             notifyItemChanged(position)
         }
     }
