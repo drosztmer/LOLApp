@@ -3,8 +3,10 @@ package com.codecool.lolapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.lolapp.R
+import com.codecool.lolapp.fragments.ListingFragmentDirections
 import com.codecool.lolapp.model.Character
 import com.codecool.lolapp.util.Util
 import kotlinx.android.synthetic.main.list_item.view.*
@@ -35,7 +37,8 @@ class ListingAdapter(var characters: ArrayList<Character>) :
             blurb.text = character.blurb
             detailsButton.setOnClickListener {
 
-
+                val action = ListingFragmentDirections.actionListingFragmentToDetailsFragment(character.id)
+                view.findNavController().navigate(action)
 
             }
         }
