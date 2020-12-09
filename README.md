@@ -5,6 +5,7 @@
 ##### - MVVM
 ##### - DI with Koin
 ##### - Navigation
+##### - Safe Args
 ##### - Retrofit
 ##### - RxJava
 ##### - Room database
