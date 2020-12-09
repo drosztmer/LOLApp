@@ -127,11 +127,7 @@ class DetailsFragment : Fragment() {
         bundle.putSerializable(DETAILS, details)
         val loreFragment = LoreFragment()
         loreFragment.arguments = bundle
-        (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, loreFragment)
-            .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
+
     }
 
 }
