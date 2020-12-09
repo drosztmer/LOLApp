@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/listingFragment">
+
+    <fragment
+        android:id="@+id/listingFragment"
+        android:name="com.codecool.lolapp.fragments.ListingFragment"
+        android:label="@string/listing_title"
+        tools:layout="@layout/fragment_listing" >
+        <action
+            android:id="@+id/action_listingFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.codecool.lolapp.fragments.DetailsFragment"
+        android:label="@string/details_title"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_loreFragment"
+            app:destination="@id/loreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loreFragment"
+        android:name="com.codecool.lolapp.fragments.LoreFragment"
+        android:label="@string/lore_title"
+        tools:layout="@layout/fragment_lore" />
+</navigation>
