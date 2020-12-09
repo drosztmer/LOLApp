@@ -4,6 +4,7 @@
 ##### - Kotlin
 ##### - MVVM
 ##### - DI with Koin
+##### - Navigation
 ##### - Retrofit
 ##### - RxJava
 ##### - Room database
