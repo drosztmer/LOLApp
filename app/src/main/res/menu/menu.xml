@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:gravity = "center_vertical"
-    tools:context=".activities.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/favourite"
-        android:orderInCategory="1"
+        android:id="@+id/favourites"
+        android:icon="@drawable/ic_favourites"
         android:title="@string/button_favourite_text"
-        app:showAsAction="ifRoom"/>
+        android:visible="true"
+        app:showAsAction="ifRoom" />
 
 </menu>

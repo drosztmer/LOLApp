@@ -1,11 +1,10 @@
 package com.codecool.lolapp.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codecool.lolapp.R
@@ -30,23 +29,9 @@ class ListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
-            val characters = savedInstanceState.getSerializable("characters") as List<Character>
-            if (characters.isEmpty()) {
-                list_error.visibility = View.VISIBLE
-                loading_view.visibility = View.GONE
-            } else {
-                listingAdapter.updateCharacters(characters)
-                list_error.visibility = View.GONE
-                loading_view.visibility = View.GONE
-            }
-        } else {
-            observeViewModel()
-        }
-
-        activity?.title = getString(R.string.listing_title)
-
         viewModel.refresh()
+        observeViewModel()
+        setHasOptionsMenu(true)
 
         listing_rv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -58,15 +43,9 @@ class ListingFragment : Fragment() {
             swipe_refresh_layout.isRefreshing = false
             listing_rv.visibility = View.GONE
             list_error.visibility = View.GONE
+            loading_view.visibility = View.VISIBLE
             viewModel.refresh()
-            observeViewModel()
         }
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable("characters", listingAdapter.characters)
     }
 
     fun observeViewModel() {
@@ -102,4 +81,14 @@ class ListingFragment : Fragment() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favourites -> findNavController().navigate(R.id.action_listingFragment_to_favouritesFragment)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

@@ -37,8 +37,8 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
     }
 
     fun removeFavourite(position: Int) {
-        notifyItemRemoved(position)
         favourites.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     class FavouritesViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -54,9 +54,6 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
             }
             name.text = favourite.name
             title.text = favourite.title
-            deleteButton.setOnClickListener {
-
-            }
         }
 
     }

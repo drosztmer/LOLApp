@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.Details
 import com.codecool.lolapp.model.data.Favourite
@@ -25,19 +27,19 @@ class DetailsFragment : Fragment() {
 
     private lateinit var characterId: String
     private var details: Details = Details("", "", "")
+    private val args by navArgs<DetailsFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        characterId = arguments?.getString(ID).toString()
+        characterId = args.characterId
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = getString(R.string.details_title)
 
         viewModel.refresh(characterId)
 
@@ -51,7 +53,7 @@ class DetailsFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.response.observe(viewLifecycleOwner, Observer { response ->
-            response.let {
+            response?.let {
                 details = response.details[characterId] ?: error(getString(R.string.error))
                 showDetails(details)
             }
@@ -123,15 +125,8 @@ class DetailsFragment : Fragment() {
     }
 
     private fun loreClick() {
-        val bundle = Bundle()
-        bundle.putSerializable(DETAILS, details)
-        val loreFragment = LoreFragment()
-        loreFragment.arguments = bundle
-        (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, loreFragment)
-            .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
+        val action = DetailsFragmentDirections.actionDetailsFragmentToLoreFragment(details)
+        findNavController().navigate(action)
     }
 
 }
