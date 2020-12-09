@@ -1,55 +1,25 @@
 package com.codecool.lolapp.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.codecool.lolapp.R
-import com.codecool.lolapp.fragments.FavouritesFragment
-import com.codecool.lolapp.fragments.ListingFragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var listingFragment: ListingFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar)
-        setupListingFragment()
+        setupActionBarWithNavController(findNavController(R.id.nav_host_fragment))
 
     }
 
-    private fun setupListingFragment() {
-        val listingFragment = ListingFragment()
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, listingFragment).commit()
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.favourite) {
-            openFavorites()
-            return true;
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun openFavorites() {
-
-        val favouritesFragment = FavouritesFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, favouritesFragment)
-            .addToBackStack(null)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
-    }
 }

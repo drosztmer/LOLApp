@@ -28,7 +28,6 @@ class FavouritesFragment : Fragment(), FavouritesAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = getString(R.string.favourites_title)
 
         favouritesAdapter.setOnItemClickListener(this)
         viewModel.refresh()
