@@ -30,23 +30,8 @@ class ListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
-            val characters = savedInstanceState.getSerializable("characters") as List<Character>
-            if (characters.isEmpty()) {
-                list_error.visibility = View.VISIBLE
-                loading_view.visibility = View.GONE
-            } else {
-                listingAdapter.updateCharacters(characters)
-                list_error.visibility = View.GONE
-                loading_view.visibility = View.GONE
-            }
-        } else {
-            observeViewModel()
-        }
-
-        activity?.title = getString(R.string.listing_title)
-
         viewModel.refresh()
+        observeViewModel()
 
         listing_rv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -58,15 +43,9 @@ class ListingFragment : Fragment() {
             swipe_refresh_layout.isRefreshing = false
             listing_rv.visibility = View.GONE
             list_error.visibility = View.GONE
+            loading_view.visibility = View.VISIBLE
             viewModel.refresh()
-            observeViewModel()
         }
-
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable("characters", listingAdapter.characters)
     }
 
     fun observeViewModel() {
@@ -101,5 +80,4 @@ class ListingFragment : Fragment() {
             }
         })
     }
-
 }

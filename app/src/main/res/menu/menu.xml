@@ -6,9 +6,10 @@
     tools:context=".activities.MainActivity">
 
     <item
-        android:id="@+id/favourite"
+        android:id="@+id/favourites"
         android:orderInCategory="1"
         android:title="@string/button_favourite_text"
+        android:icon="@drawable/ic_favourites"
         app:showAsAction="ifRoom"/>
 
 </menu>
