@@ -31,6 +31,7 @@ class ListingFragment : Fragment() {
 
         viewModel.refresh()
         observeViewModel()
+        setHasOptionsMenu(true)
 
         listing_rv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -82,7 +83,6 @@ class ListingFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

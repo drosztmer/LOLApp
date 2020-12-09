@@ -41,6 +41,6 @@
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.codecool.lolapp.fragments.FavouritesFragment"
-        android:label="fragment_favourites"
+        android:label="@string/favourites_title"
         tools:layout="@layout/fragment_favourites" />
 </navigation>
