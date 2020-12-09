@@ -33,7 +33,11 @@
         android:id="@+id/loreFragment"
         android:name="com.codecool.lolapp.fragments.LoreFragment"
         android:label="@string/lore_title"
-        tools:layout="@layout/fragment_lore" />
+        tools:layout="@layout/fragment_lore" >
+        <argument
+            android:name="details"
+            app:argType="com.codecool.lolapp.model.Details" />
+    </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.codecool.lolapp.fragments.FavouritesFragment"

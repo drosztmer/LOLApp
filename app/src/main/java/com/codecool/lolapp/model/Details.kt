@@ -1,8 +1,10 @@
 package com.codecool.lolapp.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Details(
     @SerializedName("id")
     val id: String = "",
@@ -24,7 +26,7 @@ data class Details(
     val stats: DetailsStats = DetailsStats(),
     @SerializedName("blurb")
     val blurb: String? = ""
-) : Serializable {
+) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -42,6 +44,7 @@ data class Details(
     }
 }
 
+@Parcelize
 data class DetailsInfo(
     @SerializedName("attack")
     val attack: Double = 0.0,
@@ -51,8 +54,9 @@ data class DetailsInfo(
     val magic: Double = 0.0,
     @SerializedName("difficulty")
     val difficulty: Double = 0.0
-) : Serializable
+) : Parcelable
 
+@Parcelize
 data class DetailsStats(
     @SerializedName("hp")
     val hp: Double = 0.0,
@@ -64,8 +68,9 @@ data class DetailsStats(
     val attackRange: Double = 0.0,
     @SerializedName("attackdamage")
     val attackDamage: Double = 0.0
-) : Serializable
+) : Parcelable
 
+@Parcelize
 data class ResponseDetails(
     @SerializedName("type")
     val type: String,
@@ -75,4 +80,4 @@ data class ResponseDetails(
     val version: String,
     @SerializedName("data")
     val details: Map<String, Details>
-) : Serializable
+) : Parcelable
