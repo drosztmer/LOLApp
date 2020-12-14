@@ -28,4 +28,7 @@
     <string name="ally_tips">Ally Tips</string>
     <string name="enemy_tips">Enemy Tips</string>
     <string name="error">Error</string>
+    <string name="item_restored">Item restored!</string>
+    <string name="item_deleted">Item deleted!</string>
+    <string name="undo">Undo</string>
 </resources>

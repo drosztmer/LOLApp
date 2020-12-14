@@ -13,7 +13,7 @@ interface FavouriteDao {
     @Query("SELECT * FROM favourites WHERE id = :id")
     fun getFavouriteById(id: String): Single<Favourite>
 
-    @Query("SELECT * FROM favourites")
+    @Query("SELECT * FROM favourites ORDER BY id ASC")
     fun getAll(): Single<List<Favourite>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

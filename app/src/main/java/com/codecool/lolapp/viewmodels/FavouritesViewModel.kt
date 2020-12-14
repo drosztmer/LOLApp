@@ -1,5 +1,6 @@
 package com.codecool.lolapp.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.codecool.lolapp.model.data.Favourite
@@ -19,6 +20,7 @@ class FavouritesViewModel(private val dataSource: FavouriteDao) :ViewModel() {
     val loading = MutableLiveData<Boolean>()
     val deleteSuccess = MutableLiveData<Boolean>()
     val deleteFailure = MutableLiveData<Boolean>()
+    val restored = MutableLiveData<Boolean>()
 
     init {
         getFavourites()
@@ -68,6 +70,26 @@ class FavouritesViewModel(private val dataSource: FavouriteDao) :ViewModel() {
                     override fun onError(e: Throwable) {
                         println(e.message)
                         deleteFailure.value = true
+                    }
+
+                })
+        )
+    }
+
+    fun addToFavourites(favourite: Favourite) {
+        restored.value = false
+        disposable.add(
+            dataSource.insertFavourite(favourite)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object: DisposableCompletableObserver() {
+                    override fun onComplete() {
+                        restored.value = true
+                        getFavourites()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        println(e.message)
                     }
 
                 })
