@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.data.Favourite
-import com.codecool.lolapp.util.Util
+import com.codecool.lolapp.util.*
 import kotlinx.android.synthetic.main.favourites_item.view.*
 import kotlinx.android.synthetic.main.fragment_favourites.*
 
@@ -45,12 +45,11 @@ class FavouritesAdapter(var favourites: ArrayList<Favourite>) :
         private val image = view.character_image
         private val name = view.character_name
         private val title = view.character_title
-        private val deleteButton = view.button_delete
-
 
         fun bind(favourite: Favourite) {
             if (image != null) {
-                Util.loadListImage(favourite.id, view, image)
+                val url =  BASE_URL_LIST_IMAGE + favourite.id + BASE_URL_LIST_TYPE
+                image.loadImage(url, getProgressDrawable(view.context))
             }
             name.text = favourite.name
             title.text = favourite.title

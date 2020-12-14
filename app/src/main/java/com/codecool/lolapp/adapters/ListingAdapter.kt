@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codecool.lolapp.R
 import com.codecool.lolapp.fragments.ListingFragmentDirections
 import com.codecool.lolapp.model.Character
-import com.codecool.lolapp.util.Util
+import com.codecool.lolapp.util.*
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
@@ -30,7 +30,8 @@ class ListingAdapter(var characters: ArrayList<Character>) :
 
         fun bind(character: Character) {
             if (image != null) {
-                Util.loadListImage(character.id, view, image)
+                val url =  BASE_URL_LIST_IMAGE + character.id + BASE_URL_LIST_TYPE
+                image.loadImage(url, getProgressDrawable(view.context))
             }
             name.text = character.name
             title.text = character.title
