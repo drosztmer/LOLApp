@@ -14,9 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.codecool.lolapp.R
 import com.codecool.lolapp.model.Details
 import com.codecool.lolapp.model.data.Favourite
-import com.codecool.lolapp.util.DETAILS
-import com.codecool.lolapp.util.ID
-import com.codecool.lolapp.util.Util
+import com.codecool.lolapp.util.*
 import com.codecool.lolapp.viewmodels.DetailsViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -93,7 +91,9 @@ class DetailsFragment : Fragment() {
     }
 
     private fun showDetails(details: Details) {
-        activity?.let { Util.loadDetailsImage(details.id, it, details_image) }
+        val url = BASE_URL_DETAILS_IMAGE + details.id + BASE_URL_DETAILS_TYPE
+        details_image.loadImage(url, getProgressDrawable(requireContext()))
+
         details_name_text.text = details.name
         details_title_text.text = details.title
         details_tags_text.text = details.tags.joinToString(separator = ", ")
