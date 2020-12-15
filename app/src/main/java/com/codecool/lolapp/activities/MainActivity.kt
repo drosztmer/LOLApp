@@ -9,8 +9,8 @@ import com.codecool.lolapp.R
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
 
         setupActionBarWithNavController(findNavController(R.id.nav_host_fragment))
