@@ -24,7 +24,7 @@ class DetailsFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModel()
 
     private lateinit var characterId: String
-    private var details: Details = Details("", "", "")
+    private var details: Details = Details()
     private val args by navArgs<DetailsFragmentArgs>()
 
     override fun onCreateView(
